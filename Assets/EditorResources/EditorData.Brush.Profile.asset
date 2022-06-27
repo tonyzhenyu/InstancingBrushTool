@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afc12fd3ff1a7b4e8560c953e2e50fe, type: 3}
+  m_Name: EditorData.Brush.Profile
+  m_EditorClassIdentifier: 
+  PREVIEW_MAT: {fileID: 0}
+  COLOR_Paint: {r: 0.22, g: 0.52, b: 1, a: 1}
+  COLOR_ConfigSize: {r: 1, g: 0.75, b: 0.05, a: 1}
+  COLOR_ConfigDensity: {r: 0.98, g: 0.33, b: 0.02, a: 1}
+  COLOR_Eraser: {r: 1, g: 0, b: 0.43, a: 1}
+  MaxDensity: 64
+  MaxObjNums: 1024
+  KEY_FOCUS: 103
+  KEY_SIZE: 102
+  KEY_SCALE: 115
+  KEY_DENSITY: 100
+  KEY_PageUp: 280
+  KEY_PageDown: 281
