@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa2c2fbd334fe7458fcb3f5e0c96103, type: 3}
   m_Name: EditorData.Brush.Info
   m_EditorClassIdentifier: 
-  radius: 18.2
+  radius: 4.5
   height: 5
   localscale: 1
-  density: 6
+  density: 52
   areaDensity: 64
-  noiseweight: 0
+  noiseweight: 1
   noiseStrength: 1
-  color: {r: 0.78039217, g: 0.8235294, b: 0.8627451, a: 1}
+  color: {r: 0.7294118, g: 0.7647059, b: 0.79607844, a: 1}
   distance: 0.25
   layerMask:
     serializedVersion: 2

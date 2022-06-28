@@ -2,7 +2,7 @@
 using UnityEngine;
 using Instances;
 
-namespace Instances.Editor
+namespace Instances.Editor.Brush
 {
     public sealed class InDisplayEditor : InstanceDisplayer
     {
@@ -29,7 +29,10 @@ namespace Instances.Editor
             }
             for (int i = 0; i < _instanceDatas.Count; i++)
             {
-                if (_instanceDatas[i].instances.Count == 0)
+                if (_instanceDatas[i].instances.Count == 0 || 
+                    _instanceDatas[i].mesh == null || 
+                    _instanceDatas[i].material == null ||
+                    _instanceDatas[i].material.enableInstancing == false)
                 {
                     buffers.Add(null);
                     argsbuffers.Add(null);
@@ -60,6 +63,11 @@ namespace Instances.Editor
                     {
                         continue;
                     }
+
+                    if (_instanceDatas[i].mesh == null || _instanceDatas[i].material == null)
+                    {
+                        continue;
+                    }
                     Graphics.DrawMeshInstancedIndirect(_instanceDatas[i].mesh, 0, tmpMaterial[i], bounds, argsbuffers[i]);
                 }
             }
@@ -73,6 +81,10 @@ namespace Instances.Editor
                 else
                 {
                     if (index > _instanceDatas.Count || tmpMaterial[index] == null)
+                    {
+                        return;
+                    }
+                    if (_instanceDatas[index].mesh == null || _instanceDatas[index].material == null)
                     {
                         return;
                     }
