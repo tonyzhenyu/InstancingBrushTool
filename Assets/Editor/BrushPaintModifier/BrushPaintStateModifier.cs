@@ -1,6 +1,6 @@
 using UnityEngine;
 using Instances;
-
+using Unity.Mathematics;
 namespace Instances.Editor.Brush 
 {
     public sealed class BrushPaintStateModifier

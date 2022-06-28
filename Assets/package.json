@@ -1,0 +1,11 @@
+{
+    "name": "com.coffee.rotate-me",
+    "displayName": "Instancing Brush Tool",
+    "description": "Provides editable tools that render large numbers of models without much change, and incorporates batch processing to improve CPU performance and picture quality. Suitable for scenarios, lots of grass or the same type of vegetation. When drawing, the projection ray detects the surface of the colliding body to generate drawing points for drawing, and relatively, to erase the instance data in the range.",
+    "version": "1.0.0",
+    "unity": "2019.3",
+    "license": "MIT",
+    "dependencies": {
+        
+     }
+}
