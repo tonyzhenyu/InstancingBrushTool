@@ -9,6 +9,7 @@ namespace Instances.Editor.Brush
         public const string instanceDataInEditor = "Brush.InstanceDisplayerLayerInfo";
         public const string brushConstData = "Brush.Profile";
         public const string brushInfoData = "Brush.Info";
+        public const string icon = "icon.png";
     }
 }
 namespace Instances.Editor
