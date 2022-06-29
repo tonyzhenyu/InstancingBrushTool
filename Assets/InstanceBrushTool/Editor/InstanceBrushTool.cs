@@ -7,6 +7,8 @@ using UnityEditor.SceneManagement;
 using System.Collections.Generic;
 using System;
 using Instances;
+using System.IO;
+
 namespace Instances.Editor.Brush
 {
     [EditorTool(displayName: "Instance Brush Tool")]
@@ -55,6 +57,7 @@ namespace Instances.Editor.Brush
         {
             get => _instanceDisplay as InDisplayEditor;
         }
+        
         private BrushConstData _brushConstData;
         private InstanceDisplayer _instanceDisplay;
         private BrushStateMgr _brushState;
@@ -97,7 +100,30 @@ namespace Instances.Editor.Brush
 
             _instance = this;
         }
-        public override GUIContent toolbarIcon => base.toolbarIcon;
+        public override GUIContent toolbarIcon
+        {
+            get
+            {
+                GUIContent content = new GUIContent();
+                content.tooltip = "Instance Brush";
+                
+                string path = "Packages/com.zy.instancingbrushtool/icon.png";
+                Texture2D icon = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+                if (icon != null)
+                {
+                    content.image = icon;
+
+                    return content;
+                }
+            
+                icon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/EditorResources/" + BrushToolConstInfo.icon);
+                content.image = icon;
+
+                if (icon == null) return base.toolbarIcon;
+
+                return content;
+            }
+        }
         public override void OnToolGUI(EditorWindow window)
         {
             base.OnToolGUI(window);
@@ -149,7 +175,16 @@ namespace Instances.Editor.Brush
             }
             else
             {
-                bool isLstNull = _instanceDatas.instanceDatas.Count < 1;
+                bool isLstNull;
+                if (_instanceDatas.instanceDatas == null||
+                    _instanceDatas.instanceDatas.Count < 1)
+                {
+                    isLstNull = true;
+                }
+                else
+                {
+                    isLstNull = false;
+                }
                 _isInstanceLstNull = isLstNull;
                 if (isLstNull == false)
                 {

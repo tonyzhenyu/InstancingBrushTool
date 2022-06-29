@@ -8,7 +8,6 @@ namespace Instances.Editor.Brush
 {
     public class BrushConstData : ScriptableObject
     {
-        public Material PREVIEW_MAT;
 
         public Color COLOR_Paint = new Color(0.22f, 0.52f, 1);
         public Color COLOR_ConfigSize = new Color(1, 0.75f, 0.05f);
