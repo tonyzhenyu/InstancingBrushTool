@@ -25,7 +25,17 @@ namespace Instances
             var t = new InstanceBufferInfo(transpose * Position, Rotation, LocalScale, Color);
             return t;
         }
-        public Vector3 Position { get => matrix.GetPosition(); set { this.Matrix = Matrix4x4.TRS(value, this.Rotation, this.LocalScale); } }
+        public Vector3 Position { 
+            get 
+            {
+                return new Vector3(matrix.m03, matrix.m13, matrix.m23);
+                //return  matrix.GetPosition(); 
+            }  
+            set 
+            { 
+                this.Matrix = Matrix4x4.TRS(value, this.Rotation, this.LocalScale); 
+            } 
+        }
         public Quaternion Rotation
         {
             get => matrix.rotation;
