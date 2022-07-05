@@ -1,5 +1,7 @@
 # 实例化笔刷工具 _Instance Brush Tool_
 
+![brush](imgs/Brush.png)
+
 ## **概念**
 
 &emsp;&emsp;实例显示器将笔刷序列化的数据单次提交大批量渲染数据到GPU 中渲染，同时可定义自定义提交数据结构体。(后续更新将会储存到render feature中)实例显示器将序列化数据加载到graphic buffer中采用unity graphic api 执行。
@@ -77,6 +79,12 @@
 - 笔刷的**显示颜色**可自定义
 
 ### *笔刷基本功能：*
+
+![调整笔刷物体大小模式](imgs/brush01.png)
+![调整笔刷颜色](imgs/brush02.png)
+![调整大小模式](imgs/brush03.png)
+![调整密度模式](imgs/brush04.png)
+![调整噪声强度模式](imgs/brush05.png)
 
 | 热键  | 描述   |
 | ----  |----  | 
