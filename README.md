@@ -24,6 +24,13 @@
 - Unity.Mathemetics 可在unity Packages中安装.
 - Shader需要 Universal RP.可在unity Packages中安装.
 
+## *未来计划*
+- 更新场景关系型显示器。
+- 改良序列化后的储存数据大小。
+- 优化编辑器中GC。
+- debug材质入口，优化改进编辑器property页面。
+- 移动显示控制到render feature中。
+
 ## **第一次启动**
 
 &emsp;&emsp;如果您熟悉使用过Blender3D的建模软件，第一次上手对您来说不成问题。
