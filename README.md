@@ -80,11 +80,11 @@
 
 ### *笔刷基本功能：*
 
-![调整笔刷物体大小模式](imgs/brush01.png)
-![调整笔刷颜色](imgs/brush02.png)
-![调整大小模式](imgs/brush03.png)
-![调整密度模式](imgs/brush04.png)
-![调整噪声强度模式](imgs/brush05.png)
+![调整笔刷物体大小模式](imgs/brush01.png)调整笔刷物体大小模式
+![调整笔刷颜色](imgs/brush02.png)调整笔刷颜色
+![调整大小模式](imgs/brush03.png)调整大小模式
+![调整密度模式](imgs/brush04.png)调整密度模式
+![调整噪声强度模式](imgs/brush05.png)调整噪声强度模式
 
 | 热键  | 描述   |
 | ----  |----  | 
