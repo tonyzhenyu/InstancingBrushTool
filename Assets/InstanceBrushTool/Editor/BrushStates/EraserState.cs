@@ -130,7 +130,7 @@ namespace Instances.Editor.Brush
             }
             Profiler.EndSample();
 
-            InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
+            //InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
 
             Debug.Log("clearing");
         }

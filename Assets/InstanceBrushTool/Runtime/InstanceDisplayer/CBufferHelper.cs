@@ -5,8 +5,21 @@ namespace Instances
 {
     public class CBufferHelper
     {
+        private static CBufferHelper _instance;
+        public static CBufferHelper Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new CBufferHelper();
+                }
+                return _instance;
+            }
+        }
+
         public static string ShaderId = "_Infosbuffer";
-        public static ComputeBuffer GetArgsBuffer(InstanceData layerData)
+        public ComputeBuffer GetArgsBuffer(InstanceData layerData)
         {
             uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
             int submeshIndex = 0;
@@ -61,7 +74,7 @@ namespace Instances
 
             lstbuf.Clear();
         }
-        public static ComputeBuffer GetBufferInOne(List<InstanceData> instanceDatas)
+        public ComputeBuffer GetBufferInOne(List<InstanceData> instanceDatas)
         {
 
             int count = default;
@@ -98,7 +111,7 @@ namespace Instances
 
             return cbuffer;
         }
-        public static ComputeBuffer GetInfoBuffer(InstanceData layerData)
+        public ComputeBuffer GetInfoBuffer(InstanceData layerData)
         {
             string buffername = layerData.name;
             int count = layerData.instances.Count;
@@ -109,10 +122,10 @@ namespace Instances
             cbuffer.name = buffername;
             cbuffer.SetData(layerData.BufferInfoSets);
             //layerData.material.SetBuffer(_shaderid, cbuffer);
-
+            
             return cbuffer;
         }
-        public static ComputeBuffer GetInfoBuffer(InstanceData layerData, Matrix4x4 args)
+        public ComputeBuffer GetInfoBuffer(InstanceData layerData, Matrix4x4 args)
         {
             string buffername = layerData.name;
             int count = layerData.instances.Count;
