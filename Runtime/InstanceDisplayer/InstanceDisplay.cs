@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Instances
@@ -13,6 +14,8 @@ namespace Instances
         public DisplayMode mode;
         public List<InstanceData> _instanceDatas;
         public abstract void Display(int index);
+        public virtual void initData(int index, Action<int> action) { }
+
         public abstract void OnDisable(bool destroy);
     }
 }

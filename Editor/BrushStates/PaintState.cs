@@ -38,7 +38,7 @@ namespace Instances.Editor.Brush
                 //Undo.RecordObjects(data, "undoPainting");
                 
                 //editor displayer SetsBufferData
-                InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
+                //InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
                 //
             }
 
@@ -63,7 +63,7 @@ namespace Instances.Editor.Brush
                         Planting(context, item);
                     }
                     //editor displayer SetsBufferData
-                    InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
+                    //InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
                     //
                 }
                 _lastPosition = _nowPosition;

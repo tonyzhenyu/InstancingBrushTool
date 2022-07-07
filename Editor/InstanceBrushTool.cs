@@ -53,13 +53,9 @@ namespace Instances.Editor.Brush
                 }
             }
         }
-        public InDisplayEditor InstanceDisplay
-        {
-            get => _instanceDisplay as InDisplayEditor;
-        }
         
         private BrushConstData _brushConstData;
-        private InstanceDisplayer _instanceDisplay;
+
         private BrushStateMgr _brushState;
         private InstanceDataInEditor _instanceDatas;
         private int _index = 0;
@@ -106,20 +102,7 @@ namespace Instances.Editor.Brush
             {
                 GUIContent content = new GUIContent();
                 content.tooltip = "Instance Brush";
-                
-                string path = "Packages/com.zy.instancingbrushtool/icon.png";
-                Texture2D icon = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
-                if (icon != null)
-                {
-                    content.image = icon;
-
-                    return content;
-                }
-            
-                icon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/EditorResources/" + BrushToolConstInfo.icon);
-                content.image = icon;
-
-                if (icon == null) return base.toolbarIcon;
+                content.image = Resources.Load<Texture2D>("icon.png");
 
                 return content;
             }
@@ -163,8 +146,6 @@ namespace Instances.Editor.Brush
             // -- 
 
             PanelGUI(window);
-
-            _instanceDisplay?.Display(_index);
         }
 
         private void CheckBool()
@@ -202,10 +183,9 @@ namespace Instances.Editor.Brush
                 _brushState = new BrushStateMgr(null);
                 _brushState.SetState(new NewLayerState());
 
-                _instanceDisplay = null;
                 return;
             }
-            _instanceDisplay = new InDisplayEditor(_instanceDatas.instanceDatas);
+            
             if (_index >= 0)
             {
                 _brushState = new BrushStateMgr(_instanceDatas.instanceDatas[_index]);
@@ -266,7 +246,7 @@ namespace Instances.Editor.Brush
                 GUILayout.Label($"InstanceCount£º{_instanceDatas.instanceDatas[_index].instances.Count}");
             }
 
-            GUILayout.Label($"DisplayMode£º{_instanceDisplay?.mode}");
+            //GUILayout.Label($"DisplayMode£º{_instanceDisplay?.mode}");
             GUILayout.EndVertical();
         }
 
