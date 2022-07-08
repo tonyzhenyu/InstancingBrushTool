@@ -66,12 +66,12 @@ half4 CalculateLambertWithSpecular(float3 wnormal, float3 wpos, float3 wcampos, 
 half4 CalculateLambert(float3 wnormal, float3 wpos, float3 wcampos) {
 	half diffuse = GetMainLightDiffuse(wnormal);
 	half shadow = GetMainLightShadow(wpos);
-	half attenuation = GetMainLightAttenuation(wcampos, wpos);
+	//half attenuation = GetMainLightAttenuation(wcampos, wpos);
 	half4 mlight_color = GetMainLightColor();
 
 	half3 lambert = lerp(mlight_color.rgb, GetAmbientLightColor().rgb, 1 - diffuse);
 
-	half lighting = clamp(diffuse * shadow * attenuation * mlight_color.a, LIGHT_MIN_VALUE, mlight_color.a);
+	half lighting = clamp(diffuse * shadow * mlight_color.a, LIGHT_MIN_VALUE, mlight_color.a);
 
 	return half4(lambert * lighting, 1.0);
 }
