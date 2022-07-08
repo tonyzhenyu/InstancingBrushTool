@@ -26,14 +26,6 @@ namespace Instances
                 EventList<InstanceInfo> tmp = new EventList<InstanceInfo>(cachedinfos);
                 tmp.onDataChanged += (sender,args) =>
                 {
-                    if (args == EventList<InstanceInfo>.ArgsType.Add)
-                    {
-                        cachedinfos.Add(sender);
-                    }
-                    if (args == EventList<InstanceInfo>.ArgsType.Remove)
-                    {
-                        cachedinfos.Remove(sender);
-                    }
                     instances = cachedinfos.ToArray();
                     OnValidate();
                 };
