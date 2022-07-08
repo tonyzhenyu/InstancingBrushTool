@@ -8,7 +8,10 @@ namespace Instances
 {
     public class InstanceShadowPass : ScriptableRenderPass
     {
-
+        public InstanceShadowPass()
+        {
+            renderPassEvent = RenderPassEvent.AfterRenderingShadows;
+        }
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
             base.OnCameraSetup(cmd, ref renderingData);
@@ -17,6 +20,8 @@ namespace Instances
         {
 
             CommandBuffer cmd = CommandBufferPool.Get();
+            
+
 
             VisibleLight shadowlight = renderingData.lightData.visibleLights[renderingData.lightData.mainLightIndex];
 
