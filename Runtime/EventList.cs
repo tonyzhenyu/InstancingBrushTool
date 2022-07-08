@@ -4,9 +4,9 @@ using System.Collections;
 
 namespace Instances
 {
-    public class EventList<T> : List<T>
+    public class EventList<T> : IList<T>
     {
-        public new T this[int i]
+        public T this[int i]
         {
             get
             {
@@ -17,9 +17,9 @@ namespace Instances
                 ts[i] = value;
             }
         }
-        public new int Count { get { return ts.Count; } }
+        public int Count { get { return ts.Count; } }
 
-        
+        public bool IsReadOnly => throw new NotImplementedException();
 
         public enum ArgsType { Add, Remove };
         public Action<T, ArgsType> onDataChanged;
@@ -29,19 +29,18 @@ namespace Instances
         {
             this.ts = ts;
         }
-        public new void Add(T item)
+        public void Add(T item)
         {
-            //base.Add(item);
-
+            ts.Add(item);
             onDataChanged?.Invoke(item, ArgsType.Add);
             ClearAllAction();
         }
-        public new bool Remove(T item)
+        public bool Remove(T item)
         {
+            ts.Remove(item);
             onDataChanged?.Invoke(item, ArgsType.Remove);
-            bool a = base.Remove(item);
             ClearAllAction();
-            return a;
+            return true;
         }
         private void ClearAllAction()
         {
@@ -64,7 +63,48 @@ namespace Instances
                 //Debug.Log("Clear Delegates");
             }
         }
+        public T[] ToArray()
+        {
+            return ts.ToArray();
+        }
 
-        
+        public int IndexOf(T item)
+        {
+            return ts.IndexOf(item);
+        }
+
+        public void Insert(int index, T item)
+        {
+            ts.Insert(index, item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            ts.RemoveAt(index);
+        }
+        public void Clear()
+        {
+            ts.Clear();
+        }
+
+        public bool Contains(T item)
+        {
+            return ts.Contains(item);
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return ts.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ts.GetEnumerator();
+        }
     }
 }

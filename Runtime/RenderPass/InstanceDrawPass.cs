@@ -57,19 +57,11 @@ namespace Instances
         }
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
-            //cbuffer.Clear();
+            
         }
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
-            //VisibleLight shadowlight = renderingData.lightData.visibleLights[renderingData.lightData.mainLightIndex];
-
-            //var shadowbias = ShadowUtils.GetShadowBias(ref shadowlight, renderingData.lightData.mainLightIndex, ref renderingData.shadowData,, renderingData.shadowData.resolution);
-                //cachedInfos = data.BufferInfoSets;
-                //renderingData.
-
-                //ShadowUtils.SetupShadowCasterConstantBuffer(cmd, ref shadowlight, shadowbias);
-                //shadowlight.light.AddCommandBuffer(LightEvent.AfterShadowMapPass, cmd);
-
+            
             for (int i = 0; i < instanceDatas.Length; i++)
             {
                 InstanceData data = instanceDatas[i];
