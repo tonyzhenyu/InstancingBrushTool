@@ -21,6 +21,10 @@ Shader "Custom/Instances/Instance_Grass"
 
         Pass
         {
+            Name "ForwardLit"
+            tags{
+                "LightMode" = "UniversalForward"
+            }
             HLSLPROGRAM
 
             #pragma vertex vert

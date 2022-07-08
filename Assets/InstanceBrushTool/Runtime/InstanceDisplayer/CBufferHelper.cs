@@ -23,7 +23,7 @@ namespace Instances
         {
             uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
             int submeshIndex = 0;
-            int count = layerData.instances.Count;
+            int count = layerData.Instancesinfo.Count;
 
             ComputeBuffer argsbuffer = new ComputeBuffer(1, args.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
 
@@ -90,7 +90,7 @@ namespace Instances
 
             for (int i = 0; i < instanceDatas.Count; i++)
             {
-                int tmpcount = instanceDatas[i].instances.Count;
+                int tmpcount = instanceDatas[i].Instancesinfo.Count;
                 count += tmpcount;
 
                 var buf = instanceDatas[i].BufferInfoSets;
@@ -114,7 +114,7 @@ namespace Instances
         public ComputeBuffer GetInfoBuffer(InstanceData layerData)
         {
             string buffername = layerData.name;
-            int count = layerData.instances.Count;
+            int count = layerData.Instancesinfo.Count;
             int _shaderid = Shader.PropertyToID(ShaderId);
             int strideSize = InstanceInfo.InstanceBufferInfo.GetSize();
 
@@ -128,7 +128,7 @@ namespace Instances
         public ComputeBuffer GetInfoBuffer(InstanceData layerData, Matrix4x4 args)
         {
             string buffername = layerData.name;
-            int count = layerData.instances.Count;
+            int count = layerData.Instancesinfo.Count;
             int _shaderid = Shader.PropertyToID(ShaderId);
             int strideSize = InstanceInfo.InstanceBufferInfo.GetSize();
 
@@ -149,7 +149,7 @@ namespace Instances
         }
         public static int GetLayerByteSize(InstanceData layerData)
         {
-            int count = layerData.instances.Count;
+            int count = layerData.Instancesinfo.Count;
             int stridebyte = InstanceInfo.InstanceBufferInfo.GetSize();
 
             return count * stridebyte;

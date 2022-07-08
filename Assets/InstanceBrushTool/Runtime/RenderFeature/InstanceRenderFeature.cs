@@ -22,20 +22,30 @@ namespace Instances
         /// <inheritdoc/>
         public override void Create()
         {
-            _drawInstancePass = new InstanceDrawPass(this);
+            _drawInstancePass = new InstanceDrawPass(instanceData);
             _drawInstancePass.renderPassEvent = settings.m_RenderEvent;
+
+            for (int i = 0; i < instanceData?.Length; i++)
+            {
+                if (instanceData[i] != null)
+                {
+                    instanceData[i].refreashAction += () =>
+                    {
+                        _drawInstancePass?.refreashaction?.Invoke(instanceData);
+                    };
+                }
+            }
         }
 
         // Here you can inject one or multiple render passes in the renderer.
         // This method is called when setting up the renderer once per-camera.
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
-
+            
             //_drawInstancePass.cbuffer?.ForEach(x => x?.Dispose());
             if (instanceData != null)
             {
                 renderer.EnqueuePass(_drawInstancePass);    
-
             }
             
         }
@@ -43,36 +53,43 @@ namespace Instances
         {
             base.Dispose(disposing);
             _drawInstancePass.cbuffer.ForEach(x => x?.Dispose());
+            _drawInstancePass.OnDistroy();
+            for (int i = 0; i < instanceData?.Length; i++)
+            {
+                if (instanceData[i] != null)
+                {
+                    instanceData[i].refreashAction -= OnValidate;
+                }
+            }
         }
         private void OnDisable()
         {
             _drawInstancePass.cbuffer.ForEach(x => x?.Dispose());
+            _drawInstancePass.OnDistroy();
         }
         private void OnEnable()
         {
-            RefreashBufferData();
+            _drawInstancePass?.refreashaction?.Invoke(instanceData);
         }
         private void OnValidate()
         {
-            RefreashBufferData();
-        }
-        void RefreashBufferData()
-        {
+            _drawInstancePass?.refreashaction?.Invoke(instanceData);
+
             if (_drawInstancePass != null)
             {
-                _drawInstancePass?.cbuffer?.ForEach(x => x?.Dispose());
-                _drawInstancePass.cbuffer = new List<ComputeBuffer>();
-
-                for (int i = 0; i < instanceData.Length; i++)
+                _drawInstancePass.renderPassEvent = settings.m_RenderEvent;
+            }
+            for (int i = 0; i < instanceData?.Length; i++)
+            {
+                if (instanceData[i] != null)
                 {
-                    if (instanceData[i] == null)
+                    instanceData[i].refreashAction += () =>
                     {
-                        continue;
-                    }
-                    _drawInstancePass?.cbuffer?.Add(new ComputeBuffer(instanceData[i].instances.Count, InstanceInfo.InstanceBufferInfo.GetSize(), ComputeBufferType.Structured));
+                        _drawInstancePass?.refreashaction?.Invoke(instanceData);
+                    };
                 }
             }
-            
         }
+
     }
 }

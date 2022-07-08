@@ -36,9 +36,10 @@ namespace Instances.Editor.Brush
                     Planting(context, item);
                 }
                 //Undo.RecordObjects(data, "undoPainting");
-                
+
                 //editor displayer SetsBufferData
                 //InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
+                
                 //
             }
 
@@ -64,6 +65,7 @@ namespace Instances.Editor.Brush
                     }
                     //editor displayer SetsBufferData
                     //InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
+                    
                     //
                 }
                 _lastPosition = _nowPosition;
@@ -97,7 +99,7 @@ namespace Instances.Editor.Brush
             float _radius = _brushInfo.radius;
             Vector3 position = InstanceBrushTool.Instance.DirectHitPosition.position;
             int count = 0;
-            foreach (var j in context.instanceData.instances)
+            foreach (var j in context.instanceData.Instancesinfo)
             {
                 if (Vector3.Distance(j.Position, position) < _radius)
                 {
@@ -114,14 +116,15 @@ namespace Instances.Editor.Brush
             }
             //Check End
 
-            if (context.instanceData.instances.Count > Mathf.Max(0, _maxOjbectCount - 2))
+            if (context.instanceData.Instancesinfo.Count > Mathf.Max(0, _maxOjbectCount - 2))
             {
                 return;
             }
 
-            context.instanceData.instances.Add(data);
+            context.instanceData.Instancesinfo.Add(data);
             //Undo.RecordObject(context.instanceData, "Cached Painting");
-            Debug.Log("Planting");
+
+            //Debug.Log("Planting");
         }
         //Draw Function
         private InstanceInfo[] DrawHandles(Vector3 position, Vector3 normal)

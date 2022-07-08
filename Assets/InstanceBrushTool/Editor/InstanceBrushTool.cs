@@ -234,7 +234,7 @@ namespace Instances.Editor.Brush
                 int count = 0;
                 for (int i = 0; i < _instanceDatas.instanceDatas.Count; i++)
                 {
-                    count += _instanceDatas.instanceDatas[i].instances.Count;
+                    count += _instanceDatas.instanceDatas[i].Instancesinfo.Count;
                 }
                 GUILayout.Label($"InstanceCount£º{count}");
             }
@@ -243,7 +243,7 @@ namespace Instances.Editor.Brush
                 GUI.Box(new Rect(0, 0, 250, 100), "");
                 GUILayout.Label($"InstanceLayer£º{_instanceDatas.instanceDatas[_index].name}");
                 GUILayout.Label($"CurrentLayerIndex£º{ _index}");
-                GUILayout.Label($"InstanceCount£º{_instanceDatas.instanceDatas[_index].instances.Count}");
+                GUILayout.Label($"InstanceCount£º{_instanceDatas.instanceDatas[_index].Instancesinfo.Count}");
             }
 
             //GUILayout.Label($"DisplayMode£º{_instanceDisplay?.mode}");
