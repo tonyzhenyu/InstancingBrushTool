@@ -105,34 +105,34 @@ namespace Instances.Editor.Brush
         {
             float _radius = _brushInfo.radius;
 
-            if (context.instanceData.instances.Count <= 0)
+            if (context.instanceData.Instancesinfo.Count <= 0)
             {
                 return;
             }
             
-            Profiler.BeginSample("Eraser.Find");
-            for (int i = 0; i < context.instanceData.instances.Count; i++)
+            //Profiler.BeginSample("Eraser.Find");
+            for (int i = 0; i < context.instanceData.Instancesinfo.Count; i++)
             {
 
-                Profiler.BeginSample("Eraser.Compare");
-                bool foo = Vector3.Distance(position, context.instanceData.instances[i].Position) >= _radius;
-                Profiler.EndSample();
+                //Profiler.BeginSample("Eraser.Compare");
+                bool foo = Vector3.Distance(position, context.instanceData.Instancesinfo[i].Position) >= _radius;
+                //Profiler.EndSample();
 
                 if (foo)
                 {
                     continue;
                 }
 
-                Profiler.BeginSample("Eraser.Remove");
-                context.instanceData.instances.Remove(context.instanceData.instances[i]);
+                //Profiler.BeginSample("Eraser.Remove");
+                context.instanceData.Instancesinfo.Remove(context.instanceData.Instancesinfo[i]);
                 //Undo.RecordObject(context.instanceData, "Cached Erasing");
-                Profiler.EndSample();
+                //Profiler.EndSample();
             }
-            Profiler.EndSample();
+            //Profiler.EndSample();
 
             //InDisplayEditor.SetDatas(InstanceBrushTool.Instance.InstanceDisplay);
 
-            Debug.Log("clearing");
+            //Debug.Log("clearing");
         }
     }
 }

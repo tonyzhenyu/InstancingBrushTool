@@ -1,5 +1,6 @@
 ﻿using Instances;
 using UnityEngine;
+using System;
 namespace Instances.Editor.Brush
 {
     public interface IBrushState
@@ -11,6 +12,7 @@ namespace Instances.Editor.Brush
         public IBrushState Brushstate { get => _brushMode; }
         private IBrushState _brushMode;
         public InstanceData instanceData;
+        
         public BrushStateMgr(InstanceData instanceData)
         {
             this.instanceData = instanceData;

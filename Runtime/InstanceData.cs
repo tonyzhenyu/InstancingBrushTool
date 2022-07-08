@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
+using System;
 using UnityEngine;
+using System.Collections.ObjectModel;
 
 namespace Instances
 {
@@ -11,8 +12,41 @@ namespace Instances
     {
         public Mesh mesh;
         public Material material;
-        public List<InstanceInfo> instances;
 
+        public InstanceData()
+        {
+            cachedinfos = new List<InstanceInfo>();
+        }
+        
+        private List<InstanceInfo> cachedinfos;
+        public EventList<InstanceInfo> Instancesinfo
+        {
+            get
+            {
+                EventList<InstanceInfo> tmp = new EventList<InstanceInfo>(cachedinfos);
+                tmp.onDataChanged += (sender,args) =>
+                {
+                    if (args == EventList<InstanceInfo>.ArgsType.Add)
+                    {
+                        cachedinfos.Add(sender);
+                    }
+                    if (args == EventList<InstanceInfo>.ArgsType.Remove)
+                    {
+                        cachedinfos.Remove(sender);
+                    }
+                    instances = cachedinfos.ToArray();
+                    OnValidate();
+                };
+                return tmp;
+            }
+            set
+            {
+                instances = value.ToArray();
+            }
+        }
+        [SerializeField]private InstanceInfo[] instances;
+
+        public Action refreashAction; 
         public InstanceInfo.InstanceBufferInfo[] BufferInfoSets
         {
             get
@@ -71,7 +105,10 @@ namespace Instances
         }
         private void OnValidate()
         {
+            //Debug.Log("data Refreash");
 
+            refreashAction?.Invoke();
         }
+        
     }
 }
