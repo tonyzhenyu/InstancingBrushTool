@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afc12fd3ff1a7b4e8560c953e2e50fe, type: 3}
   m_Name: EditorData.Brush.Profile
   m_EditorClassIdentifier: 
-  COLOR_Paint: {r: 0.22, g: 0.52, b: 1, a: 1}
+  COLOR_Paint: {r: 0.17880027, g: 0.7158822, b: 0.9245283, a: 1}
   COLOR_ConfigSize: {r: 1, g: 0.75, b: 0.05, a: 1}
   COLOR_ConfigDensity: {r: 0.98, g: 0.33, b: 0.02, a: 1}
   COLOR_Eraser: {r: 1, g: 0, b: 0.43, a: 1}

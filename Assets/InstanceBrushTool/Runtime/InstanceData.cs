@@ -13,21 +13,18 @@ namespace Instances
         public Mesh mesh;
         public Material material;
 
-        public InstanceData()
-        {
-            cachedinfos = new List<InstanceInfo>();
-        }
-        
+
         private List<InstanceInfo> cachedinfos;
         public EventList<InstanceInfo> Instancesinfo
         {
             get
             {
+                cachedinfos = new List<InstanceInfo>(instances);
                 EventList<InstanceInfo> tmp = new EventList<InstanceInfo>(cachedinfos);
                 tmp.onDataChanged += (sender,args) =>
                 {
-                    instances = cachedinfos.ToArray();
-                    OnValidate();
+                    instances = tmp.ToArray();
+                    refreashAction?.Invoke();
                 };
                 return tmp;
             }
@@ -98,8 +95,8 @@ namespace Instances
         private void OnValidate()
         {
             //Debug.Log("data Refreash");
+            cachedinfos = new List<InstanceInfo>(instances);
 
-            refreashAction?.Invoke();
         }
         
     }

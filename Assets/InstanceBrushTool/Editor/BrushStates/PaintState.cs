@@ -138,11 +138,12 @@ namespace Instances.Editor.Brush
 
             List<InstanceInfo> datas = new List<InstanceInfo>();
 
-            Handles.color = new Color(_myColor.r, _myColor.g, _myColor.b, 0.1f);
+            Handles.color = new Color(_myColor.r, _myColor.g, _myColor.b, 0.2f);
             Handles.DrawSolidDisc(position, normal, _radius);
-            Handles.color = new Color(_myColor.r, _myColor.g, _myColor.b, .5f);
-            Handles.DrawWireDisc(position, normal, _radius,2);
+            Handles.color = new Color(_myColor.r, _myColor.g, _myColor.b, .65f);
+            Handles.DrawWireDisc(position, normal, _radius, 3);
             Handles.DrawLine(position, position + normal * _height);
+
             ProceduralDisc proceduralDisc = new ProceduralDisc(normal, position);
             proceduralDisc.noiseStrength = noiseStrength;
             Vector3[] points = proceduralDisc.GetPoints(_density, _radius, _weight);

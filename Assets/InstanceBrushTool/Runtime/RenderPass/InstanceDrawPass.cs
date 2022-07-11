@@ -20,8 +20,7 @@ namespace Instances
             cachedInfos = new InstanceInfo.InstanceBufferInfo[1];
 
             refreashaction += RefreashCBuffer;
-            RefreashCBuffer(data);
-
+            
         }
         public void OnDistroy()
         {
