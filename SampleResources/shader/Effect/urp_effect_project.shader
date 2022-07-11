@@ -2,7 +2,7 @@ Shader "URP/Effect/urp_effect_project"
 {
     Properties
     {
-        [HDR]_Tint("Tint",Color) = (1,1,1,1)
+        _Tint("Tint",Color) = (1,1,1,1)
         [NoScaleOffset][MainTex]_MainTex("MainTex" , 2D) = "white"{}
         _ClipThreshold("ClipThreshold" , Range(0,1)) = 0
         _Scale("Scale" , float) = 1
@@ -20,8 +20,8 @@ Shader "URP/Effect/urp_effect_project"
         }
 
         LOD 100
-        Cull off
-        Blend SrcAlpha One
+        Cull front
+        Blend SrcAlpha DstColor
         ZWrite off
         ZTest off
 

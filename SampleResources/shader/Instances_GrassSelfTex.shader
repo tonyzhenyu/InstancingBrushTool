@@ -1,4 +1,4 @@
-Shader "Custom/Instances/Instance_Grass"
+Shader "Custom/Instances/Instances_GrassSelfTex"
 {
     Properties
     {
@@ -132,15 +132,14 @@ Shader "Custom/Instances/Instance_Grass"
 
                 half4 col = tex2D(_MainTex, i.uv);
                 clip(col.a - _CutOff);
-
-                half4 light =  CalculateLambert(float3(0,1,0), i.pos_w.xyz, _WorldSpaceCameraPos)  ;
+                half4 environment = _GlossyEnvironmentColor ;
+                half4 light =  CalculateLambert(float3(0,1,0), i.pos_w.xyz, _WorldSpaceCameraPos) *2;
     
-                half4 gammaColor = pow(saturate(i.col),2.2);
-                half4 topcolor = clamp(0,1.5,gammaColor + gammaColor * (sin(i.pos_w.w)+1)/2) * 0.8;
-                half4 mixcol = lerp(gammaColor, topcolor, col.r);
+                half4 gammaColor = pow(saturate(i.col),2.2) * col;
+                //half4 topcolor =  clamp(1,1.5,gammaColor + gammaColor  ;
+                //half4 mixcol = lerp(gammaColor, topcolor, (sin(i.pos_w.w)+1)/2);
 
-
-                return mixcol.rgba * light.rgba ;
+                return gammaColor.rgba * light.rgba * clamp((sin(i.pos_w.w)+1),1,1.2);
             }
             ENDHLSL
         }

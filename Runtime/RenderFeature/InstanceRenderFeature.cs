@@ -18,12 +18,12 @@ namespace Instances
         public InstanceData[] instanceData;
         private InstanceDrawPass _drawInstancePass;
 
-
         /// <inheritdoc/>
         public override void Create()
         {
             _drawInstancePass = new InstanceDrawPass(instanceData);
             _drawInstancePass.renderPassEvent = settings.m_RenderEvent;
+            _drawInstancePass.refreashaction.Invoke(instanceData);
 
             for (int i = 0; i < instanceData?.Length; i++)
             {
@@ -43,9 +43,10 @@ namespace Instances
         {
             
             //_drawInstancePass.cbuffer?.ForEach(x => x?.Dispose());
-            if (instanceData != null)
+            if (instanceData != null && _drawInstancePass.cbuffer != null)
             {
                 renderer.EnqueuePass(_drawInstancePass);    
+
             }
             
         }
@@ -73,21 +74,10 @@ namespace Instances
         }
         private void OnValidate()
         {
-            _drawInstancePass?.refreashaction?.Invoke(instanceData);
-
+            
             if (_drawInstancePass != null)
             {
                 _drawInstancePass.renderPassEvent = settings.m_RenderEvent;
-            }
-            for (int i = 0; i < instanceData?.Length; i++)
-            {
-                if (instanceData[i] != null)
-                {
-                    instanceData[i].refreashAction += () =>
-                    {
-                        _drawInstancePass?.refreashaction?.Invoke(instanceData);
-                    };
-                }
             }
         }
 
